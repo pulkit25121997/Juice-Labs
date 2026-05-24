@@ -10,7 +10,10 @@ labels:
 {{- end }}
 spec:
   replicas: 1
-  selector:
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false  selector:
     matchLabels:
       app: {{ .Values.name }}
   template:
