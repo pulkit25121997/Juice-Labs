@@ -16,7 +16,14 @@ metadata:
 {{ toYaml .Values.common.additionalAnnotations | indent 4 }}
 {{- end }}
 {{- if .Values.frontend.additionalAnnotations }}
-{{ toYaml .Values.frontend.additionalAnnotations | indent 4 }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 3
+          failureThreshold: 3{{ toYaml .Values.frontend.additionalAnnotations | indent 4 }}
 {{- end }}
 {{- end }}
 spec:
