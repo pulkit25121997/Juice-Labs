@@ -14,7 +14,8 @@ metadata:
   annotations:
 {{- if and .Values.common .Values.common.additionalAnnotations }}
 {{ toYaml .Values.common.additionalAnnotations | indent 4 }}
-{{- end }}
+        securityContext:
+          readOnlyRootFilesystem: true{{- end }}
 {{- if .Values.backend.additionalAnnotations }}
 {{ toYaml .Values.backend.additionalAnnotations | indent 4 }}
 {{- end }}
